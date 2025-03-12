@@ -1,0 +1,149 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header styling */
+header {
+    width: 100%;
+    background-color: #000000; /* Change as needed */
+    padding: 20px 50px;
+    position: fixed; /* Keeps it at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+/* Navigation bar styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo styling */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #bababa;
+}
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px; /* Adds spacing between menu items */
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #8e8e8e;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links li a:hover {
+    color: #ff6600; /* Change hover color as needed */
+}
+
+#home {
+    color: black; /* Ensures all text inside #home is black */
+    text-align: center; /* Centers the text (optional) */
+    padding: 100px 20px; /* Adjust padding for spacing */
+}
+
+#home h1 {
+    font-size: 2.5rem; /* Adjust the heading size */
+    font-weight: bold;
+}
+
+#home p {
+    font-size: 1.2rem;
+    max-width: 600px; /* Keeps text width readable */
+    margin: 10px auto; /* Centers paragraph */
+    font-family: 'Inter', sans-serif;
+}
+
+#home .btn {
+    display: inline-block;
+    background-color: #ff6600; /* Adjust button color */
+    color: white; /* Button text color */
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#home .btn:hover {
+    background-color: #cc5500; /* Darker shade on hover */
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Project Card Styling */
+.project {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project:hover {
+    transform: scale(1.05);
+}
+
+/* Project Images */
+.project img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.project img:hover {
+    opacity: 0.8;
+}
+
+/* Project Titles */
+.project h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.project h3 a {
+    text-decoration: none;
+    color: black;
+}
+
+.project h3 a:hover {
+    color: #ff6600; /* Change color on hover */
+}
+
+/* Project Descriptions */
+.project p {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
