@@ -1,6 +1,7 @@
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <!DOCTYPE html>
 <html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script defer src="scripts.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,9 @@
             background-color: #f4f4f4;
         }
         .hero {
+            margin-top: 70px;
             height: 90vh;
-            background: url('hero-image.jpg') center/cover;
+            background: url('images/seyaul.JPG') center/cover;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -70,70 +72,73 @@
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
     
     <section id="home" class="hero">
-        <h1>Coding to me is creating things to change peoples' minds.</h1>
+        <div class="hero-text">
+        <h1>Coding to me is about creating things to change peoples' minds.</h1>
         <p>Coding isn't, and shouldn't be, constrained to the technical/business side of the world.
-            Coding can be used as an artform used to express yourself, and this is what interests me the most.
+            Coding can be used as an artform that can express you and your passions, and this is what interests me the most.
         </p>
+        </div>
     </section>
     
     <section id = "projects" class="projects-grid">
         <div class="project">
-            <a href="project1.html">
+            <a href="nba.html">
                 <img src="images/nba.jpg" alt="NBA Analysis">
             </a>
-            <h3><a href="project1.html">NBA Analysis</a></h3>
+            <div class = "project-text">
+            <h3><a href="nba.html">NBA Analysis</a></h3>
             <p>A data visualization project about the NBA using R and SQL.</p>
+            </div>
         </div>
 
         <div class="project">
-            <a href="project2.html">
+            <a href="adc.html">
                 <img src="images/artemis.png" alt="Project 2">
             </a>
-            <h3><a href="project2.html">Artemis Generation ADC</a></h3>
-            <p>Another brief description about this project.</p>
+            <h3><a href="adc.html">Artemis Generation ADC</a></h3>
+            <p id = 'project-text'>An app development challenge for NASA written in C#.</p>
         </div>
 
         <div class="project">
-            <a href="project3.html">
+            <a href="lyricguessr.html">
                 <img src="images/cssi.jpeg" alt="Project 3">
             </a>
-            <h3><a href="project3.html">LyricGuessr</a></h3>
-            <p>Details about the project in one sentence.</p>
+            <h3><a href="lyricguessr.html">LyricGuessr</a></h3>
+            <p id = 'project-text'>A webgame developed during Google's CSSI program written in HTML and CSS.</p>
         </div>
 
         <div class="project">
-            <a href="project4.html">
+            <a href="change.html">
                 <img src="images/change.jpg" alt="Project 4">
             </a>
-            <h3><a href="project4.html">Rice Hackathon 2023</a></h3>
-            <p>Short but engaging project summary.</p>
+            <h3><a href="change.html">Rice Hackathon 2023</a></h3>
+            <p>A finance app made with python and PyQT5 for Rice's 2023 Hackathon.</p>
         </div>
 
         <div class="project">
             <a href="farmageddon.html">
                 <img src="images/farmageddon.png" alt="farmageddon 4">
             </a>
-            <h3><a href="project4.html">Farmageddon</a></h3>
-            <p>Short but engaging project summary.</p>
+            <h3><a href="farmageddon.html">Farmageddon</a></h3>
+            <p>A video game written in GDScript.</p>
         </div>
 
         <div class="project">
             <a href="318.html">
                 <img src="images/rice.jpg" alt="comp318">
             </a>
-            <h3><a href="project4.html">OwlDB + M3ssag1n8</a></h3>
-            <p>Short but engaging project summary.</p>
+            <h3><a href="318.html">OwlDB + M3ssag1n8</a></h3>
+            <p>A NoSQL database and a web messaging service written in Go, TypeScript, HTML, and CSS.</p>
         </div>
     </section>
     
-    <section class="hero2" id = "experience">
+    <!-- <section class="hero2" id = "experience">
         <h2>Experience</h2>
         <div class="experience
         -grid">
@@ -142,9 +147,18 @@
                 <p>Summer 2021</p>
                 <p>Google Computer Science Summer Institute</p>
             </div>
-    </section>
+    </section> -->
 
-    
+
+
+    <div id="contact-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <h2>Contact Me</h2>
+            <p>Email: <a href="mailto:ericskimtexas@gmail.com">ericskimtexas@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/seyaul" target="_blank">https://linkedin.com/in/seyaul</a></p>
+        </div>
+    </div>
 
 
 </body>

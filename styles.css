@@ -147,3 +147,120 @@ nav {
         grid-template-columns: 1fr; /* Single column on smaller screens */
     }
 }
+
+.project-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push text to the bottom */
+    flex-grow: 1; /* Ensures it takes up remaining space */
+    padding: 10px 0;
+}
+
+
+
+
+
+/* Popup Container - Hidden by default */
+.popup {
+    position: fixed;
+    top: -100%; /* Start off-screen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    transition: top 0.5s ease-in-out; /* Sliding effect */
+    z-index: 1000;
+}
+
+/* Show Popup */
+.popup.active {
+    top: 10%; /* Slide into view */
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Contact Links */
+.popup-content a {
+    color: #2566ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.popup-content a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Text Container with Rounded White Background */
+.hero-text {
+    background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px 30px; /* Space inside the box */
+    max-width: 800px; /* Prevents it from being too wide */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds slight shadow for visibility */
+}
+
+/* Heading and Paragraph Styling */
+.hero-text h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: black;
+}
+
+
+
+
+/* Centering the main content */
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically (if needed) */
+    text-align: left; /* Ensures text is centered */
+    max-width: 800px; /* Keeps text readable */
+    margin: auto; /* Centers block on the page */
+    padding: 40px 20px; /* Adds space around the content */
+}
+
+/* Header Styles */
+.centered-content h1{
+    margin-top: 60px;
+}
+.centered-content h2,
+.centered-content h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Paragraph Styling */
+.centered-content p {
+    font-size: 1.2rem;
+    color: #333; /* Adjust color for readability */
+    line-height: 1.6; /* Improve spacing between lines */
+    margin-bottom: 20px;
+}
+
+/* Style for emphasis (like "a note on my case studies") */
+.centered-content strong {
+    font-weight: bold;
+}

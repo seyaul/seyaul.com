@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script defer src="scripts.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric Kim | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .hero {
+            height: 90vh;
+            background: url('images/seyaul.JPG') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #000000;
+        }
+        .hero2 {
+            height: 45vh;
+            background: url('hero-image.jpg') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #000000;
+        }
+        .btn {
+            background: #000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".nav-links a").forEach(link => {
+                link.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    document.querySelector(link.getAttribute("href")).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                const target = link.getAttribute("href");
+    
+                // Check if we are on the homepage
+                if (window.location.pathname !== "/index.html") {
+                    // Redirect to homepage and scroll to section
+                    window.location.href = target;
+                } else {
+                    // If already on homepage, just scroll to section
+                    document.querySelector(target).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eric Seyaul Kim</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="centered-content">
+        <h1>OwlDB + M3ssag1n8 ᕕ( ᐛ )ᕗ</h1>
+        <p><b>Coming Soon!</b></p>
+    
+        <!-- <p>NBA analysis was a project that took course over 1 semester at Rice, or 14 weeks. This was a project I did for my Tools and Models for data science class at Rice University. 
+            The goal of the project was to prove my understanding and proficiency in cleaning, processing, and analyzing data, as well as delivering that data in an easily digestible format.
+        </p>
+        </p>
+    
+        <p>My role in this project was to clean, process, and analyze various NBA statistics, given to me in a csv file. Before preprocessing and cleaning, the data had a lot of information: <b>13 million points</b> to be exact!
+            I had to filter out the data that was irrelevant to my analysis, and then preprocess the data to make it easier to analyze. This consisted of regex operations, filtering, and data type conversions to isolate 
+            pertinent information. I also gained familiarity with different libraries. In fact, switching from one library to another to read in the data, I was able to reduce the time it took to read in the data by <b>over 80 percent.</b>
+        </p>
+
+        <p>When it came time to present, I was able to successfuly navigate the project and my thought processes through my excellent interpersonal soft skills. Regarding the proficiency that I gained with this subject, I think my <b>A</b> in this class speaks for itself.</p>
+    -->
+    </section>
+</body>
+</html>   

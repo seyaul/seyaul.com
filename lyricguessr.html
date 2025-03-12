@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script defer src="scripts.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric Kim | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .hero {
+            height: 90vh;
+            background: url('images/seyaul.JPG') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #000000;
+        }
+        .hero2 {
+            height: 45vh;
+            background: url('hero-image.jpg') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #000000;
+        }
+        .btn {
+            background: #000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".nav-links a").forEach(link => {
+                link.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    document.querySelector(link.getAttribute("href")).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+                const target = link.getAttribute("href");
+    
+                // Check if we are on the homepage
+                if (window.location.pathname !== "/index.html") {
+                    // Redirect to homepage and scroll to section
+                    window.location.href = target;
+                } else {
+                    // If already on homepage, just scroll to section
+                    document.querySelector(target).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Eric Seyaul Kim</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="centered-content">
+        <h1>LyricGuessr ᕕ( ᐛ )ᕗ</h1>
+        <p>What is LyricGuessr?</p>
+    
+        <p>LyricGuessr was a passion project that I was able to actualize via the Google CSSI program. I've always had a vested interest in music and their artists, and I wanted to create a platform
+            that tests someone on how diehard of a fan they were for a certain artist. The game is simple: the user is given a snippet of lyrics from a song, and they have to guess the song title and artist.
+            Coding it, especially as one of the first real projects that I tackled, was not as easy.
+        </p>
+    
+        <p>LyricGuessr consisted of applying the front-end skills I learned in high school and learning the back-end skills I needed during the development process. The most challenging portion of this project was 
+            connecting the user's Spotify account to the website, where the website would then choose a random top artist and song from said artist. This consisted of using Spotify's OAuth. When I was making this website, Spotify did not 
+            internally have lyrics for an artist yet, so I also needed to use the MusixMatch API to get the lyrics for the song. Finally, I used local data storage to make sure that users could retain their score between refreshes.
+        </p>
+
+        <p>Overall, this is one of the projects I am most proud of. Although I didn't do anything crazy with this project, it was still something that made me very proud when I was able to show my friends and encourage them to play my game. 
+            This project helped me realize what I wanted out of my career. 
+        </p>
+    
+        <!-- <h2>a note on my case studies</h2>
+        <p><strong>Click on the names below to access them!</strong> These were all from my old portfolio last year, 
+           so you'll notice a change in UI. They'll be redesigned and updated soon!</p>
+    
+        <img src="your-image.jpg" alt="Case Studies Preview" width="600"> -->
+    </section>
+</body>
+</html>   
