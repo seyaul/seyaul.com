@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Setup — seyaul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0d0d0d;
+            color: #e0e0e0;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        header {
+            background: #000;
+            padding: 18px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #bababa;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 52px 20px 100px;
+        }
+
+        /* ── Page Header ── */
+        .page-header {
+            margin-bottom: 44px;
+        }
+
+        .page-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #ff6600;
+            margin-bottom: 14px;
+        }
+
+        .page-header h1 {
+            font-size: 1.95rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: #f2f2f2;
+            margin-bottom: 14px;
+            letter-spacing: -0.025em;
+        }
+
+        .page-header p {
+            font-size: 0.92rem;
+            color: #666;
+            line-height: 1.75;
+            max-width: 480px;
+        }
+
+        /* ── Progress Track ── */
+        .progress-track {
+            display: flex;
+            align-items: center;
+            margin-bottom: 36px;
+            padding: 0 2px;
+        }
+
+        .pdot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #2a2a2a;
+            background: #161616;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #444;
+            flex-shrink: 0;
+            transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+        }
+
+        .pdot.active {
+            border-color: #ff6600;
+            color: #ff6600;
+        }
+
+        .pdot.done {
+            border-color: #22c55e;
+            background: #22c55e;
+            color: #000;
+        }
+
+        .pline {
+            flex: 1;
+            height: 2px;
+            background: #222;
+            transition: background 0.35s ease;
+        }
+
+        .pline.done {
+            background: #22c55e;
+        }
+
+        /* ── Step Cards ── */
+        .step {
+            background: #161616;
+            border: 1.5px solid #222;
+            border-radius: 14px;
+            padding: 22px 22px 20px;
+            margin-bottom: 10px;
+            opacity: 0.38;
+            pointer-events: none;
+            transition: opacity 0.3s ease, border-color 0.3s ease;
+        }
+
+        .step.active {
+            opacity: 1;
+            pointer-events: all;
+            border-color: #ff6600;
+        }
+
+        .step.done {
+            opacity: 1;
+            pointer-events: all;
+            border-color: #1e1e1e;
+        }
+
+        /* Step header row */
+        .step-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .snum {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.73rem;
+            font-weight: 700;
+            color: #555;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .step.active .snum {
+            background: #ff6600;
+            color: #fff;
+        }
+
+        .step.done .snum {
+            background: #22c55e;
+            color: #000;
+        }
+
+        .smeta { flex: 1; }
+
+        .stag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        .step.active .stag { color: #ff6600; }
+
+        .stitle {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #ddd;
+            line-height: 1.3;
+        }
+
+        .step.done .stitle {
+            color: #444;
+            text-decoration: line-through;
+            text-decoration-color: #333;
+        }
+
+        /* Description */
+        .sdesc {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .sdesc strong { color: #999; font-weight: 600; }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 11px 20px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .btn-orange {
+            background: #ff6600;
+            color: #fff;
+        }
+
+        .btn-orange:hover, .btn-orange:active { background: #e05500; }
+
+        .btn-ghost {
+            background: transparent;
+            color: #ff6600;
+            border: 1.5px solid rgba(255, 102, 0, 0.35);
+        }
+
+        .btn-ghost:hover, .btn-ghost:active {
+            background: rgba(255, 102, 0, 0.08);
+            border-color: #ff6600;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ── Instructions block ── */
+        .instructions {
+            background: #111;
+            border: 1px solid #1e1e1e;
+            border-radius: 10px;
+            padding: 16px 18px 16px 14px;
+            margin-bottom: 18px;
+        }
+
+        .instructions ol {
+            list-style: none;
+            counter-reset: instr;
+            padding: 0;
+        }
+
+        .instructions li {
+            counter-increment: instr;
+            display: flex;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #777;
+            line-height: 1.65;
+            padding: 3px 0;
+        }
+
+        .instructions li::before {
+            content: counter(instr);
+            min-width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #1e1e1e;
+            color: #555;
+            font-size: 0.68rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .instructions strong { color: #aaa; font-weight: 600; }
+
+        .code {
+            font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+            background: #1e1e1e;
+            color: #bbb;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.79rem;
+            border: 1px solid #2a2a2a;
+            white-space: nowrap;
+        }
+
+        /* ── Status messages ── */
+        .status-msg {
+            margin-top: 12px;
+            min-height: 20px;
+            font-size: 0.82rem;
+        }
+
+        .msg-countdown { color: #ff6600; font-weight: 500; }
+        .msg-done {
+            color: #22c55e;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ── Completion card ── */
+        .completion-card {
+            background: #161616;
+            border: 1.5px solid #222;
+            border-radius: 14px;
+            padding: 32px 28px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .completion-card.show { display: block; }
+
+        .completion-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.12);
+            border: 2px solid #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin: 0 auto 18px;
+        }
+
+        .completion-card h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0f0f0;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .completion-card p {
+            font-size: 0.87rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* ── Reset link ── */
+        .reset-wrap {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .reset-link {
+            font-size: 0.75rem;
+            color: #333;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            background: none;
+            border: none;
+            font-family: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .reset-link:hover { color: #666; }
+
+        /* ── Footer ── */
+        footer {
+            background: #000;
+            color: #444;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        footer a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover { color: #bababa; }
+
+        /* ── Mobile ── */
+        @media (max-width: 480px) {
+            .container { padding: 36px 16px 80px; }
+            .page-header h1 { font-size: 1.65rem; }
+            .step { padding: 18px; border-radius: 12px; }
+            .btn-row { flex-direction: column; }
+            .btn-row .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="/">seyaul</a>
+</header>
+
+<!-- Script source blocks — not executed by browser -->
+<script type="text/plain" id="src-a">
+// InstagramStart.js
+// Run this via Shortcuts when Instagram opens.
+// It saves the start time to iCloud/local storage.
+
+const key = "instagram_stopwatch_start";
+const now = Date.now();
+
+if (Keychain.contains(key)) {
+  // A session was already running (e.g. crash, force quit, stop script never fired)
+  // Calculate how long that stale session was and warn, then reset
+  const staleStart = Number(Keychain.get(key));
+  const staleElapsed = Math.floor((now - staleStart) / 1000);
+  const minutes = Math.floor(staleElapsed / 60);
+  const seconds = staleElapsed % 60;
+  const pad = (n) => String(n).padStart(2, "0");
+
+  const notif = new Notification();
+  notif.title = "⚠️ Previous session not closed";
+  notif.body = `Found an unclosed session of ${pad(minutes)}:${pad(seconds)}. Resetting and starting fresh.`;
+  notif.schedule();
+}
+
+Keychain.set(key, String(now));
+
+const notif = new Notification();
+notif.title = "⏱ Stopwatch Started";
+notif.body = "Timer started for Instagram session.";
+notif.schedule();
+
+Script.complete();
+</script>
+
+<script type="text/plain" id="src-b">
+// InstagramStop.js
+// Run this via Shortcuts when Instagram closes.
+// Stores session log in Keychain — no files or iCloud needed.
+
+const key = "instagram_stopwatch_start";
+const logKey = "instagram_log";
+
+if (Keychain.contains(key)) {
+  const start = Number(Keychain.get(key));
+  const now = Date.now();
+  const elapsed = now - start;
+
+  const totalSeconds = Math.floor(elapsed / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  const pad = (n) => String(n).padStart(2, "0");
+  const timeStr = hours > 0
+    ? `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`
+    : `${pad(minutes)}:${pad(seconds)}`;
+
+  const startDate = new Date(start);
+  const endDate = new Date(now);
+
+  const dateStr = startDate.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const startTimeStr = startDate.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  const endTimeStr = endDate.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+
+  const logEntry = `${dateStr}, ${startTimeStr} → ${endTimeStr} (${timeStr})`;
+  const existingLog = Keychain.contains(logKey) ? Keychain.get(logKey) : "";
+  Keychain.set(logKey, existingLog + logEntry + "\n");
+
+  Keychain.remove(key);
+
+  const notif = new Notification();
+  notif.title = "📱 Instagram Session";
+  notif.body = `You spent ${timeStr} on Instagram.`;
+  notif.schedule();
+
+} else {
+  const notif = new Notification();
+  notif.title = "⚠️ No session found";
+  notif.body = "Couldn't find a start time. Did the start script run?";
+  notif.schedule();
+}
+
+Script.complete();
+</script>
+
+<script type="text/plain" id="src-c">
+// InstagramLog.js
+// Run this manually in Scriptable to view your session history.
+
+const logKey = "instagram_log";
+
+const log = Keychain.contains(logKey) ? Keychain.get(logKey).trim() : null;
+
+if (log) {
+  const alert = new Alert();
+  alert.title = "📱 Instagram Log";
+  alert.message = log;
+  alert.addAction("Clear Log");
+  alert.addCancelAction("Done");
+  const choice = await alert.present();
+  if (choice === 0) {
+    Keychain.remove(logKey);
+  }
+} else {
+  const alert = new Alert();
+  alert.title = "📱 Instagram Log";
+  alert.message = "No sessions logged yet.";
+  alert.addCancelAction("Done");
+  await alert.present();
+}
+</script>
+
+<!-- ── Main ── -->
+<main class="container">
+
+    <div class="page-header">
+        <div class="page-tag">Study Configuration</div>
+        <h1>Participant Setup</h1>
+        <p>Complete each step in order to configure your device for the study. Takes about five minutes. Open this page on your iPhone.</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-track">
+        <div class="pdot active" id="pd-1"><span id="pds-1">1</span></div>
+        <div class="pline" id="pl-1"></div>
+        <div class="pdot" id="pd-2"><span id="pds-2">2</span></div>
+        <div class="pline" id="pl-2"></div>
+        <div class="pdot" id="pd-3"><span id="pds-3">3</span></div>
+        <div class="pline" id="pl-3"></div>
+        <div class="pdot" id="pd-4"><span id="pds-4">4</span></div>
+        <div class="pline" id="pl-4"></div>
+        <div class="pdot" id="pd-5"><span id="pds-5">5</span></div>
+        <div class="pline" id="pl-5"></div>
+        <div class="pdot" id="pd-6"><span id="pds-6">6</span></div>
+    </div>
+
+    <!-- ── Step 1 ── -->
+    <div class="step active" id="step-1">
+        <div class="step-head">
+            <div class="snum" id="snum-1">1</div>
+            <div class="smeta">
+                <div class="stag">Step 1 of 6</div>
+                <div class="stitle">Install the automation app</div>
+            </div>
+        </div>
+        <p class="sdesc">Install <strong>Scriptable</strong> from the App Store. It's free and provides the runtime for the study's background components.</p>
+        <div class="btn-row">
+            <a href="https://apps.apple.com/app/scriptable/id1405459188"
+               class="btn btn-orange"
+               id="btn-1">Open App Store →</a>
+            <button class="btn btn-ghost"
+                    id="btn-1-done"
+                    style="display:none"
+                    onclick="completeStep(1)">Installed — continue →</button>
+        </div>
+        <div class="status-msg" id="status-1"></div>
+    </div>
+
+    <!-- ── Step 2 ── -->
+    <div class="step" id="step-2">
+        <div class="step-head">
+            <div class="snum" id="snum-2">2</div>
+            <div class="smeta">
+                <div class="stag">Step 2 of 6</div>
+                <div class="stitle">Install component A</div>
+            </div>
+        </div>
+        <p class="sdesc">Tap the button — Scriptable will open and prompt you to import the component. Tap <strong>Add Script</strong>, then return to this page.</p>
+        <a href="#" class="btn btn-orange" id="btn-2">Open in Scriptable →</a>
+        <div class="status-msg" id="status-2"></div>
+    </div>
+
+    <!-- ── Step 3 ── -->
+    <div class="step" id="step-3">
+        <div class="step-head">
+            <div class="snum" id="snum-3">3</div>
+            <div class="smeta">
+                <div class="stag">Step 3 of 6</div>
+                <div class="stitle">Install component B</div>
+            </div>
+        </div>
+        <p class="sdesc">Same as before — Scriptable will open and import the component. Tap <strong>Add Script</strong>, then return here.</p>
+        <a href="#" class="btn btn-orange" id="btn-3">Open in Scriptable →</a>
+        <div class="status-msg" id="status-3"></div>
+    </div>
+
+    <!-- ── Step 4 ── -->
+    <div class="step" id="step-4">
+        <div class="step-head">
+            <div class="snum" id="snum-4">4</div>
+            <div class="smeta">
+                <div class="stag">Step 4 of 6</div>
+                <div class="stitle">Install component C</div>
+            </div>
+        </div>
+        <p class="sdesc">Final component — tap to open Scriptable, add the script, then return to this page.</p>
+        <a href="#" class="btn btn-orange" id="btn-4">Open in Scriptable →</a>
+        <div class="status-msg" id="status-4"></div>
+    </div>
+
+    <!-- ── Step 5 ── -->
+    <div class="step" id="step-5">
+        <div class="step-head">
+            <div class="snum" id="snum-5">5</div>
+            <div class="smeta">
+                <div class="stag">Step 5 of 6</div>
+                <div class="stitle">Configure trigger A</div>
+            </div>
+        </div>
+        <p class="sdesc">Set up the first automation in the Shortcuts app. Follow these steps exactly:</p>
+        <div class="instructions">
+            <ol>
+                <li>Open <strong>Shortcuts</strong> → tap <strong>Automation</strong> at the bottom</li>
+                <li>Tap <strong>+</strong> → <strong>App</strong></li>
+                <li>Tap <strong>Choose</strong>, select the study app → tap <strong>Opens</strong></li>
+                <li>Tap <strong>Next</strong> → <strong>Add Action</strong></li>
+                <li>Search for <span class="code">Scriptable</span> → select <strong>Run Script</strong></li>
+                <li>Under <strong>Script</strong>, choose <span class="code">InstagramStart</span></li>
+                <li>Turn off <strong>Ask Before Running</strong> → tap <strong>Done</strong></li>
+            </ol>
+        </div>
+        <button class="btn btn-orange" onclick="completeStep(5)">Done — continue →</button>
+        <div class="status-msg" id="status-5"></div>
+    </div>
+
+    <!-- ── Step 6 ── -->
+    <div class="step" id="step-6">
+        <div class="step-head">
+            <div class="snum" id="snum-6">6</div>
+            <div class="smeta">
+                <div class="stag">Step 6 of 6</div>
+                <div class="stitle">Configure trigger B</div>
+            </div>
+        </div>
+        <p class="sdesc">Repeat the process for the closing automation:</p>
+        <div class="instructions">
+            <ol>
+                <li>Open <strong>Shortcuts</strong> → <strong>Automation</strong> → <strong>+</strong> → <strong>App</strong></li>
+                <li>Select the same study app → tap <strong>Closes</strong></li>
+                <li>Tap <strong>Next</strong> → <strong>Add Action</strong> → search <span class="code">Scriptable</span> → <strong>Run Script</strong></li>
+                <li>Under <strong>Script</strong>, choose <span class="code">InstagramStop</span></li>
+                <li>Turn off <strong>Ask Before Running</strong> → tap <strong>Done</strong></li>
+            </ol>
+        </div>
+        <button class="btn btn-orange" onclick="completeStep(6)">Done — finish setup →</button>
+        <div class="status-msg" id="status-6"></div>
+    </div>
+
+    <!-- Completion -->
+    <div class="completion-card" id="completionCard">
+        <div class="completion-icon">✓</div>
+        <h2>Setup complete</h2>
+        <p>Your device is now configured for the study. The system will run automatically in the background. You can close this page.</p>
+    </div>
+
+    <div class="reset-wrap">
+        <button class="reset-link" onclick="resetProgress()">Reset setup progress</button>
+    </div>
+
+</main>
+
+<footer>
+    <a href="/">seyaul.com</a>
+</footer>
+
+<script>
+    // ── Build Scriptable URLs from embedded source ───────────────────────────
+    const srcA = document.getElementById('src-a').textContent.trim();
+    const srcB = document.getElementById('src-b').textContent.trim();
+    const srcC = document.getElementById('src-c').textContent.trim();
+
+    const URLS = {
+        2: 'scriptable:///add-script?name=InstagramStart&code=' + encodeURIComponent(srcA),
+        3: 'scriptable:///add-script?name=InstagramStop&code='  + encodeURIComponent(srcB),
+        4: 'scriptable:///add-script?name=InstagramLog&code='   + encodeURIComponent(srcC),
+    };
+
+    document.getElementById('btn-2').href = URLS[2];
+    document.getElementById('btn-3').href = URLS[3];
+    document.getElementById('btn-4').href = URLS[4];
+
+    // ── State ────────────────────────────────────────────────────────────────
+    const STORAGE_KEY = 'seyaul_study_setup_v1';
+    let completed = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+    const activeTimers = {};
+
+    function save() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...completed]));
+    }
+
+    function nextStep() {
+        for (let i = 1; i <= 6; i++) {
+            if (!completed.has(i)) return i;
+        }
+        return 7; // all done
+    }
+
+    // ── Render ───────────────────────────────────────────────────────────────
+    function render() {
+        const active = nextStep();
+
+        for (let i = 1; i <= 6; i++) {
+            const step = document.getElementById('step-' + i);
+            const pd   = document.getElementById('pd-' + i);
+            const pds  = document.getElementById('pds-' + i);
+            const pl   = i < 6 ? document.getElementById('pl-' + i) : null;
+            const snum = document.getElementById('snum-' + i);
+
+            if (completed.has(i)) {
+                step.className = 'step done';
+                pd.className   = 'pdot done';
+                pds.textContent = '✓';
+                snum.textContent = '✓';
+                if (pl) pl.className = 'pline done';
+            } else if (i === active) {
+                step.className = 'step active';
+                pd.className   = 'pdot active';
+                pds.textContent = i;
+                snum.textContent = i;
+                if (pl) pl.className = 'pline';
+            } else {
+                step.className = 'step';
+                pd.className   = 'pdot';
+                pds.textContent = i;
+                snum.textContent = i;
+                if (pl) pl.className = 'pline';
+            }
+        }
+
+        document.getElementById('completionCard').className =
+            active === 7 ? 'completion-card show' : 'completion-card';
+    }
+
+    // ── Complete a step ──────────────────────────────────────────────────────
+    function completeStep(n) {
+        if (activeTimers[n]) {
+            clearInterval(activeTimers[n]);
+            delete activeTimers[n];
+        }
+        completed.add(n);
+        save();
+
+        const status = document.getElementById('status-' + n);
+        status.innerHTML = '<span class="msg-done">✓ Done</span>';
+
+        render();
+
+        // Scroll to next active step
+        const next = nextStep();
+        const target = next <= 6
+            ? document.getElementById('step-' + next)
+            : document.getElementById('completionCard');
+
+        if (target) {
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 280);
+        }
+    }
+
+    // ── Step 1: App Store ────────────────────────────────────────────────────
+    document.getElementById('btn-1').addEventListener('click', function () {
+        setTimeout(function () {
+            document.getElementById('btn-1-done').style.display = 'inline-flex';
+        }, 700);
+    });
+
+    // ── Steps 2–4: Scriptable import ─────────────────────────────────────────
+    function attachScriptStep(n) {
+        document.getElementById('btn-' + n).addEventListener('click', function () {
+            const btn    = document.getElementById('btn-' + n);
+            const status = document.getElementById('status-' + n);
+
+            // Disable button to prevent double-tap
+            btn.style.opacity = '0.45';
+            btn.style.pointerEvents = 'none';
+
+            let count = 4;
+            status.innerHTML = '<span class="msg-countdown">Marking as done in ' + count + 's\u2026</span>';
+
+            activeTimers[n] = setInterval(function () {
+                count--;
+                if (count <= 0) {
+                    clearInterval(activeTimers[n]);
+                    delete activeTimers[n];
+                    completeStep(n);
+                } else {
+                    status.innerHTML = '<span class="msg-countdown">Marking as done in ' + count + 's\u2026</span>';
+                }
+            }, 1000);
+        });
+    }
+
+    attachScriptStep(2);
+    attachScriptStep(3);
+    attachScriptStep(4);
+
+    // ── Reset ────────────────────────────────────────────────────────────────
+    function resetProgress() {
+        if (!confirm('Reset all setup progress?')) return;
+        Object.values(activeTimers).forEach(clearInterval);
+        for (const k in activeTimers) delete activeTimers[k];
+        completed.clear();
+        save();
+
+        // Clear status messages and restore button states
+        for (let i = 1; i <= 6; i++) {
+            const status = document.getElementById('status-' + i);
+            if (status) status.innerHTML = '';
+        }
+
+        const btn1done = document.getElementById('btn-1-done');
+        if (btn1done) btn1done.style.display = 'none';
+
+        [2, 3, 4].forEach(function (n) {
+            const btn = document.getElementById('btn-' + n);
+            if (btn) { btn.style.opacity = ''; btn.style.pointerEvents = ''; }
+        });
+
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Init ─────────────────────────────────────────────────────────────────
+    render();
+
+    // Scroll to current step if returning mid-way
+    const current = nextStep();
+    if (current > 1 && current <= 6) {
+        const el = document.getElementById('step-' + current);
+        if (el) {
+            setTimeout(function () {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 400);
+        }
+    }
+</script>
+
+</body>
+</html>
